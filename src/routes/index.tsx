@@ -169,7 +169,8 @@ function Launcher() {
         e.preventDefault();
       } else if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        launch(APPS[focusRef.current]);
+        const app = APPS[focusRef.current];
+        if (app) launch(app);
       }
     };
     window.addEventListener("keydown", onKey);
