@@ -46,6 +46,21 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
+  --color-ink: var(--ink);
+  --color-ink-deep: var(--ink-deep);
+  --color-ember: var(--ember);
+  --color-ember-deep: var(--ember-deep);
+  --color-smoke: var(--smoke);
+  --color-brand-youtube: var(--brand-youtube);
+  --color-brand-netflix: var(--brand-netflix);
+  --color-brand-hotstar-1: var(--brand-hotstar-1);
+  --color-brand-hotstar-2: var(--brand-hotstar-2);
+  --color-brand-fancode: var(--brand-fancode);
+  --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
+  --font-brush: "Ma Shan Zheng", serif;
+  --font-body: "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --animate-kenburns: kenburns 32s ease-in-out infinite alternate;
+  --animate-colon-blink: colon-blink 2.4s ease-in-out infinite;
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -132,6 +147,70 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+/*
+ * Wukong TV theme tokens.
+ * Ink blacks for the ambient background, ember gold for focus/highlights,
+ * plus per-app brand colors for the launch dock.
+ */
+:root {
+  --ink-deep: oklch(0.13 0.015 265);
+  --ink: oklch(0.18 0.02 265);
+  --ember: oklch(0.8 0.12 78);
+  --ember-deep: oklch(0.6 0.13 55);
+  --smoke: oklch(0.68 0.015 260);
+  --brand-youtube: #ff0033;
+  --brand-netflix: #e50914;
+  --brand-hotstar-1: #7b2ff7;
+  --brand-hotstar-2: #f107a3;
+  --brand-fancode: #f4643c;
+}
+
+@keyframes kenburns {
+  from {
+    transform: scale(1.02) translateX(0);
+  }
+  to {
+    transform: scale(1.12) translateX(-1.5%);
+  }
+}
+
+@keyframes colon-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes ember-rise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.9;
+  }
+  60% {
+    transform: translateX(18px);
+  }
+  100% {
+    transform: translateY(-95vh) translateX(-12px);
+    opacity: 0;
+  }
+}
+
+.ember {
+  position: absolute;
+  bottom: -12px;
+  border-radius: 9999px;
+  background: var(--ember);
+  box-shadow: 0 0 8px 1px color-mix(in oklab, var(--ember) 70%, transparent);
+  animation: ember-rise linear infinite;
+  filter: blur(0.5px);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -140,5 +219,6 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
   }
 }
