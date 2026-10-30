@@ -53,6 +53,21 @@ function PlayGlyph() {
   );
 }
 
+function MusicGlyph() {
+  return (
+    <span className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-current">
+      <svg
+        viewBox="0 0 24 24"
+        className="ml-0.5 h-3 w-3"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M8 5.2v13.6L19.2 12 8 5.2Z" />
+      </svg>
+    </span>
+  );
+}
+
 function NGlyph() {
   return <span className="font-display text-xl leading-none">N</span>;
 }
@@ -92,6 +107,15 @@ const APPS: TvApp[] = [
     badge: "bg-brand-youtube",
     glow: "rgba(255, 0, 51, 0.45)",
     glyph: <PlayGlyph />,
+  },
+  {
+    id: "youtube-music",
+    name: "YT Music",
+    tagline: "Playlists · Albums · Live",
+    url: "https://music.youtube.com",
+    badge: "rounded-full bg-brand-youtube",
+    glow: "rgba(255, 0, 51, 0.45)",
+    glyph: <MusicGlyph />,
   },
   {
     id: "netflix",
@@ -287,27 +311,8 @@ function Launcher() {
         </p>
       </div>
 
-      {/* Brand */}
-      <header
-        className={cn(
-          "absolute left-12 top-10 flex items-center gap-4 transition-opacity duration-1000",
-          idle && "opacity-50",
-        )}
-      >
-        <div className="flex h-11 w-11 items-center justify-center rounded-full border border-ember/50 bg-ink/60">
-          <span className="font-brush text-xl text-ember">悟</span>
-        </div>
-        <div>
-          <p className="font-display text-2xl tracking-[0.35em] text-foreground">
-            WUKONG
-          </p>
-          <p className="text-[10px] uppercase tracking-[0.5em] text-smoke">
-            TV Launcher
-          </p>
-        </div>
-      </header>
+      {/* Clock */}
 
-      {/* Ambient clock */}
       <section
         className={cn(
           "absolute left-12 top-1/2 -translate-y-1/2 transition-all duration-1000 ease-out",
@@ -363,7 +368,7 @@ function Launcher() {
                 onClick={() => launch(app)}
                 aria-label={`Open ${app.name}`}
                 className={cn(
-                  "group relative flex h-24 w-60 items-center gap-4 rounded-2xl border px-5 text-left backdrop-blur-sm transition-all duration-300 ease-out",
+                  "group relative flex h-24 min-w-0 max-w-64 flex-1 basis-0 items-center gap-4 rounded-2xl border px-5 text-left backdrop-blur-sm transition-all duration-300 ease-out",
                   focused
                     ? "-translate-y-2 scale-105 border-ember/70 bg-card/90"
                     : "border-border/50 bg-card/45 opacity-60 hover:opacity-90",
